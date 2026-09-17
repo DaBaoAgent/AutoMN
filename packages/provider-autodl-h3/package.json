@@ -1,0 +1,11 @@
+{
+  "name": "@autodl/provider-autodl-h3",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "项目 Provider：AutoDL.Art ComfyUI 工作流的 MiniMax H3 多图生视频（736p / 12s）",
+  "hypit": { "activation": "./dist/activation.js" },
+  "exports": { ".": "./dist/provider.js" },
+  "files": ["dist"],
+  "scripts": { "build": "tsc -p tsconfig.json" }
+}

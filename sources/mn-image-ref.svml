@@ -1,0 +1,26 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <!--
+    用例 4：用参考帧生成「定妆图 / 场景图」（火山方舟 Seedream）
+    用途：① 把源片里模糊的帧补成高质量人物参考图；② 换背景/换光线但锁住人物；
+          ③ 为后续 H3 提供更干净的参考图（比糊帧更稳）。
+    注意：Seedream 的 size 只认「宽x高」，面积别超过 ~4.3M px；参考帧放 references/frames/。
+  -->
+  <import as="text" from="@hypit/text@1"/>
+  <import as="media" from="@hypit/media@1"/>
+  <import as="seedream" from="@hypit/seedream@1"/>
+
+  <media:Image id="frame-01" src="../references/frames/f-01.png"/>
+
+  <text:Value id="image-prompt">写实电影感人物定妆照，9:16 竖构图，仿胶片质感。人物保持参考帧中的同一张脸、同一发型、同一妆造与服装，
+姿态自然；视角为正侧面偏四分之三，眼神看向画面右侧，神情从容安静。
+
+场景：明亮的室内，浅色墙面与柔和窗光，背景简洁虚化，只留人物清晰。
+光线：柔和的自然侧光，皮肤通透、细节锐利，没有硬阴影。
+画面必须绝对干净：不要出现任何文字、字幕、字母、数字、水印、logo、贴纸、图标或二维码。</text:Value>
+
+  <seedream:ReferenceImage id="still" prompt={image-prompt}
+    aspect-ratio="9:16" quality="ultra" output-format="png" nsfw-check="true">
+    <seedream:Reference image={frame-01}/>
+  </seedream:ReferenceImage>
+</svml>

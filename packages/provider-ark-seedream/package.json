@@ -1,0 +1,11 @@
+{
+  "name": "@volcengine/provider-ark-seedream",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "项目 Provider：火山方舟 (Volcengine Ark) Seedream 生图",
+  "hypit": { "activation": "./dist/activation.js" },
+  "exports": { ".": "./dist/provider.js" },
+  "files": ["dist"],
+  "scripts": { "build": "tsc -p tsconfig.json" }
+}

@@ -1,0 +1,133 @@
+{
+  "format": "hypit.runtime-local@1",
+  "dataRoot": ".hypit/runtimes/local",
+  "credentials": {
+    "os": { "use": "@hypit/credential-store-os" }
+  },
+  "endpoints": {
+    "autodl.h3": {
+      "use": "@autodl/provider-autodl-h3",
+      "config": {
+        "baseUrl": "https://autodl.art",
+        "apiKey": { "store": "os", "key": "autodl.h3" },
+        "concurrency": 3,
+        "pollIntervalMs": 15000,
+        "maxReferenceBytes": 6291456,
+        "prefer": [
+          "minimax_h3_b99_003_12s",
+          "minimax_h3_lightx2v_v5_15s",
+          "minimax_h3_lightx2v_v5",
+          "minimax_h3_b99_001",
+          "minimax_h3_lightx2v_no_pic",
+          "minimax_h3_b99_002",
+          "minimax_h3_image_audio_to_video"
+        ],
+        "workflows": [
+          {
+            "id": "minimax_h3_b99_003_12s",
+            "label": "H3多图生视频12秒",
+            "kind": "multi-image",
+            "durations": [12],
+            "resolutions": [{ "tier": "768P", "aspectRatio": "9:16", "payload": "736p竖" }],
+            "maxReferences": 3
+          },
+          {
+            "id": "minimax_h3_lightx2v_v5",
+            "label": "H3多图参考生视频",
+            "kind": "multi-image",
+            "durations": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            "resolutions": [
+              { "tier": "768P", "aspectRatio": "9:16", "payload": "768p竖" },
+              { "tier": "768P", "aspectRatio": "16:9", "payload": "768p横" },
+              { "tier": "2K", "aspectRatio": "9:16", "payload": "1080p竖" },
+              { "tier": "2K", "aspectRatio": "16:9", "payload": "1080p横" }
+            ],
+            "maxReferences": 9
+          },
+          {
+            "id": "minimax_h3_lightx2v_v5_15s",
+            "label": "H3多图生视频15秒",
+            "kind": "multi-image",
+            "durations": [15],
+            "resolutions": [
+              { "tier": "768P", "aspectRatio": "9:16", "payload": "768p竖" },
+              { "tier": "768P", "aspectRatio": "16:9", "payload": "768p横" }
+            ],
+            "maxReferences": 9
+          },
+          {
+            "id": "minimax_h3_b99_001",
+            "label": "H3文生视频（画质先行）",
+            "kind": "text-to-video",
+            "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "resolutions": [
+              { "tier": "768P", "aspectRatio": "9:16", "payload": "736p竖" },
+              { "tier": "768P", "aspectRatio": "16:9", "payload": "736p横" }
+            ]
+          },
+          {
+            "id": "minimax_h3_lightx2v_no_pic",
+            "label": "H3文生视频",
+            "kind": "text-to-video",
+            "durations": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            "resolutions": [
+              { "tier": "768P", "aspectRatio": "9:16", "payload": "768p竖" },
+              { "tier": "768P", "aspectRatio": "16:9", "payload": "768p横" },
+              { "tier": "2K", "aspectRatio": "9:16", "payload": "1080p竖" },
+              { "tier": "2K", "aspectRatio": "16:9", "payload": "1080p横" }
+            ]
+          },
+          {
+            "id": "minimax_h3_b99_002",
+            "label": "H3首尾帧生成视频",
+            "kind": "first-last",
+            "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            "resolutions": [
+              { "tier": "768P", "aspectRatio": "9:16", "payload": "736p竖" },
+              { "tier": "768P", "aspectRatio": "16:9", "payload": "736p横" }
+            ]
+          },
+          {
+            "id": "minimax_h3_image_audio_to_video",
+            "label": "H3图生视频-音频同步(自动对口型)",
+            "kind": "image-audio",
+            "durations": [],
+            "resolutions": [],
+            "maxReferences": 1,
+            "audioField": "ref_audio_0",
+            "audioDurationField": "audio_duration"
+          }
+        ]
+      }
+    },
+    "ark.seedream": {
+      "use": "@volcengine/provider-ark-seedream",
+      "config": {
+        "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+        "capability": "seedream-5-0-pro",
+        "arkModel": "doubao-seedream-5-0-pro-260628",
+        "apiKey": { "store": "os", "key": "ark.seedream" },
+        "watermark": false,
+        "maxReferences": 14,
+        "maxReferenceBytes": 10485760
+      }
+    },
+    "media.local": { "use": "@hypit/provider-media-local" },
+    "hyperframes.local": { "use": "@hypit/provider-hyperframes-local" },
+    "whisperx.local": {
+      "use": "@hypit/provider-whisperx-local",
+      "config": {
+        "expectedModel": "large-v3",
+        "expectedDevice": "cpu",
+        "expectedCompute": "int8",
+        "expectedBatchSize": 4,
+        "alignmentLanguages": ["zh"]
+      }
+    }
+  },
+  "bindings": {
+    "@hypit/minimax-h3@1#minimax-h3": "autodl.h3",
+    "@hypit/seedream@1#seedream-5-lite": "ark.seedream",
+    "@hypit/whisperx@1#whisperx-alignment": "whisperx.local"
+  }
+}

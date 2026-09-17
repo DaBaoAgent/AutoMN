@@ -1,0 +1,26 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <!--
+    用例 3：无对白动态镜头（走拍 / 回眸 / 氛围）——纯文生，用来做可拼接的素材段。
+    没有 <d> 就没有读错风险；重点放在运镜、光线、动态幅度。
+  -->
+  <import as="text" from="@hypit/text@1"/>
+  <import as="h3" from="@hypit/minimax-h3@1"/>
+
+  <text:Value id="scene-prompt">integrated_multimodal_description: [Shot 1] Live-action, cinematic film-still quality, vertical framing.
+A young woman with long dark wavy hair, wearing a light summer dress, walks slowly away from the camera along a
+narrow path lined with green trees; late-afternoon sunlight comes from behind, rimming her hair. She takes a few
+steps, then turns her head back over her shoulder toward the camera with a soft smile, and keeps walking. Camera:
+follows from behind at a medium-full shot, smooth handheld motion, slight upward drift, no cuts, no zoom.
+
+Nobody talks in this shot and no lips move: it is a silent scene with a single person in frame.
+
+overall_soundscape: Outdoor ambience, light breeze through leaves, soft footsteps on the path.
+
+non_diegetic_music: A gentle piano and strings bed, low and warm, no vocals.
+
+Hard constraints: do not render watermarks, subtitles, captions, letters, numbers, platform logos, UI elements or QR codes.</text:Value>
+
+  <h3:TextVideo id="final" prompt={scene-prompt}
+    duration="8" resolution="768P" aspect-ratio="9:16"/>
+</svml>

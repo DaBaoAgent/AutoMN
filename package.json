@@ -1,0 +1,19 @@
+{
+  "name": "AutoMN",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AutoMN：人物出镜短视频复刻工具链 —— MiniMax H3 生视频（AutoDL.Art）+ 火山方舟 Seedream 生图，含对白/语速/回读校验",
+  "scripts": {
+    "check-dialogue": "node scripts/check-dialogue.mjs",
+    "check-take": "node scripts/check-take.mjs",
+    "retime": "node scripts/retime.mjs"
+  },
+  "dependencies": {
+    "@autodl/provider-autodl-h3": "file:./packages/provider-autodl-h3",
+    "@volcengine/provider-ark-seedream": "file:./packages/provider-ark-seedream"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

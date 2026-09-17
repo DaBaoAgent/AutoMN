@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2023", "DOM"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "verbatimModuleSyntax": true,
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "types": ["node"],
+    "typeRoots": ["D:/@kaifa/AutoMN/hypit/node_modules/@types"],
+    "baseUrl": ".",
+    "paths": {
+      "@hypit/hypit/endpoint-kit": ["D:/@kaifa/AutoMN/hypit/dist/public/endpoint-kit.d.ts"],
+      "@hypit/hypit/generation": ["D:/@kaifa/AutoMN/hypit/dist/public/generation.d.ts"],
+      "@hypit/hypit/runtime-kit": ["D:/@kaifa/AutoMN/hypit/dist/public/runtime-kit.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

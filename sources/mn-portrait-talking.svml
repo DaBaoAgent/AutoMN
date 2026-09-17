@@ -1,0 +1,27 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <!--
+    用例 1：单人出镜「口播」——纯文生，不需要任何素材，克隆下来就能 plan/build。
+    10 秒档，台词 32 字（预算 42 字），语速显式声明。
+  -->
+  <import as="text" from="@hypit/text@1"/>
+  <import as="h3" from="@hypit/minimax-h3@1"/>
+
+  <text:Value id="dialogue-prompt">integrated_multimodal_description: [Shot 1] Live-action, cinematic e-commerce quality, vertical framing.
+A young Chinese woman in her late twenties (S1) with long black hair and clean natural makeup, wearing a beige
+knit cardigan over a white top, stands in a bright minimalist room with a large window and sheer curtains behind
+her. She looks straight into the camera at medium close-up so her mouth and eyes stay unobstructed. She speaks at
+a natural, brisk conversational pace with no long pauses between words, and says clearly:
+&lt;d&gt;[Chinese] 很多人问我这个小东西好不好用，今天一条视频讲清楚，先说结论。&lt;/d&gt;
+Nobody else appears in frame. Camera holds a static medium close-up, no cuts.
+
+overall_soundscape: Quiet indoor room tone, a faint rustle of fabric.
+
+non_diegetic_music: A soft, upbeat acoustic guitar bed, very quiet, no vocals.
+
+Hard constraints: do not render watermarks, subtitles, captions, letters, numbers, platform logos, UI elements
+or QR codes.</text:Value>
+
+  <h3:TextVideo id="final" prompt={dialogue-prompt}
+    duration="10" resolution="768P" aspect-ratio="9:16"/>
+</svml>

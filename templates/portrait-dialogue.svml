@@ -1,0 +1,34 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <!--
+    模板：单人出镜「口播」镜头（合规写法）—— 规则见 docs/rules-dialogue.md
+    要点：正文英文 + 台词 <d>[Chinese] 原文</d> + 说话人编号 (S1) + 语速显式 + 台词量落在预算 60%–100%
+    10 秒档预算 = (10.125−0.6)×4.5 ≈ 42 字 ⟹ 目标 25–42 字（太短会被拖慢语速）
+    改完先跑：node scripts/check-dialogue.mjs sources/xxx.svml   （0 ERROR / 0 WARN 再动手）
+  -->
+  <import as="text" from="@hypit/text@1"/>
+  <import as="media" from="@hypit/media@1"/>
+  <import as="h3" from="@hypit/minimax-h3@1"/>
+
+  <media:Image id="person-ref" src="../references/frames/f-01.png"/>
+
+  <text:Value id="dialogue-prompt">integrated_multimodal_description: [Shot 1] Live-action, cinematic film-still quality, vertical framing.
+A young woman in her twenties (S1) with long dark hair and light makeup, wearing a simple white knit top, sits on a
+sofa in a bright living room with plants and a large window behind her. She faces the camera at medium close-up so
+her mouth and eyes stay unobstructed. She speaks at a natural, brisk conversational pace with no long pauses
+between words, and says clearly:
+&lt;d&gt;[Chinese] 今天想跟你聊一个我用了三个月的小习惯，坚持下来真的会变轻松。&lt;/d&gt;
+She keeps her face, hairstyle, makeup and outfit exactly as in the reference image. Nobody else speaks and no one
+else moves their mouth. Camera holds a static medium close-up.
+
+overall_soundscape: Soft indoor room tone with a faint air-conditioner hum.
+
+non_diegetic_music: A light, warm acoustic guitar loop, very soft, no vocals.
+
+Hard constraints: keep her face, hairstyle, makeup and outfit exactly as in the reference image; do not render watermarks, subtitles, captions, letters, numbers, platform logos, UI elements or QR codes.</text:Value>
+
+  <h3:ReferenceVideo id="final" prompt={dialogue-prompt}
+    duration="10" resolution="768P" aspect-ratio="9:16">
+    <h3:Reference image={person-ref}/>
+  </h3:ReferenceVideo>
+</svml>

@@ -1,0 +1,39 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+  <!--
+    用例 2：单人出镜 + 「画外音」（抒情/文案类，抖音最常见的那种）
+    关键：人物不出声 —— 必须写 off-screen narrator + lips remain completely closed（R8），
+          否则模型会让她张嘴说话、口型全错。
+    参考帧：把源片抽帧放到 references/frames/f-01.png（或改成你自己的路径）。
+  -->
+  <import as="text" from="@hypit/text@1"/>
+  <import as="media" from="@hypit/media@1"/>
+  <import as="h3" from="@hypit/minimax-h3@1"/>
+
+  <media:Image id="frame-01" src="../references/frames/f-01.png"/>
+
+  <text:Value id="voiceover-prompt">integrated_multimodal_description: [Shot 1] Live-action, cinematic film-still quality, vertical framing.
+A young woman with long straight dark hair, wearing a light knit top, sits quietly by a large window in soft
+daylight; a blurred interior with muted warm tones sits behind her. She holds a phone in one hand, glances down
+at it, then slowly lifts her gaze out of the window; around the sixth second she rests her fingertips lightly
+against her chin, pensive. Camera: one continuous take, slowly dollying in from a medium shot to a medium
+close-up, smooth and steady, no cuts.
+
+She never speaks: her lips remain completely closed and her mouth stays closed the whole time, she does not mouth
+words, and nobody else appears in frame.
+
+A soft female narrator (S1), off-screen and never visible, recites calmly, a measured melancholic pace with one
+short breath between the two sentences, pronouncing every character exactly as written:
+&lt;d&gt;[Chinese] 后来才明白，成长不是变得坚硬，而是学会温柔地对待自己，也放过自己。&lt;/d&gt;
+
+overall_soundscape: Quiet room ambience, faint distant city hum.
+
+non_diegetic_music: A quiet sparse piano undertone, very soft, no vocals.
+
+Hard constraints: keep her face, hairstyle and outfit exactly as in the reference image; do not render watermarks, subtitles, captions, letters, numbers, platform logos, UI elements or QR codes.</text:Value>
+
+  <h3:ReferenceVideo id="final" prompt={voiceover-prompt}
+    duration="10" resolution="768P" aspect-ratio="9:16">
+    <h3:Reference image={frame-01}/>
+  </h3:ReferenceVideo>
+</svml>
