@@ -1,0 +1,8 @@
+node_modules/
+.hypit/
+out/
+*.state.json
+
+# 源视频与抽帧（第三方素材，不入库；只保留目录占位）
+references/*
+!references/.gitkeep
